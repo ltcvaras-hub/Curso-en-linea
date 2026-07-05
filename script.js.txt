@@ -1,0 +1,280 @@
+// NAVEGACIÓN PRINCIPAL DEL OVA
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-content'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    
+    document.getElementById('tab-' + tabId).classList.add('active-content');
+    event.currentTarget.classList.add('active');
+}
+
+// ACORDEÓN REPOSITORIO
+function toggleAccordion(element) {
+    const body = element.nextElementSibling;
+    const isVisible = body.style.display === 'block';
+    body.style.display = isVisible ? 'none' : 'block';
+    element.querySelector('span').textContent = isVisible ? '▼' : '▲';
+}
+
+// FORO INTERACTIVO
+function postToForum() {
+    const name = document.getElementById('forum-name').value.trim();
+    const reply = document.getElementById('forum-reply').value.trim();
+    
+    if(!name || !reply) { alert("Por favor complete todos los campos."); return; }
+    
+    const container = document.getElementById('forum-comments-container');
+    const newComment = document.createElement('div');
+    newComment.className = 'comment';
+    newComment.innerHTML = `<div class="comment-author">${name}</div><p>${reply}</p>`;
+    container.prepend(newComment);
+    
+    document.getElementById('forum-name').value = '';
+    document.getElementById('forum-reply').value = '';
+}
+
+// LÓGICA DE JUEGOS
+function switchGame(gameId) {
+    document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active-game'));
+    document.querySelectorAll('.game-nav-btn').forEach(el => el.classList.remove('active'));
+    
+    document.getElementById('game-' + gameId).classList.add('active-game');
+    event.currentTarget.classList.add('active');
+}
+
+// JUEGO 1: ORDENAR NIVELES MARCO CDD
+const correctSortOrder = ["A1", "A2", "B1", "B2", "C1", "C2"];
+let userSortOrder = [];
+function initSortGame() {
+    const container = document.getElementById('sort-container');
+    container.innerHTML = '';
+    userSortOrder = [];
+    document.getElementById('sort-feedback').textContent = '';
+    
+    const shuffled = [...correctSortOrder].sort(() => Math.random() - 0.5);
+    shuffled.forEach(level => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-choice';
+        btn.textContent = level;
+        btn.onclick = () => {
+            btn.classList.add('disabled');
+            btn.disabled = true;
+            userSortOrder.push(level);
+            
+            if(userSortOrder.length === correctSortOrder.length) {
+                if(JSON.stringify(userSortOrder) === JSON.stringify(correctSortOrder)) {
+                    document.getElementById('sort-feedback').textContent = "🎉 ¡Perfecto! Dominas los niveles de competencia desde el acceso hasta el liderazgo.";
+                    document.getElementById('sort-feedback').style.color = "green";
+                } else {
+                    document.getElementById('sort-feedback').textContent = "❌ Orden incorrecto. Inténtalo de nuevo presionando 'Mód 1' arriba.";
+                    document.getElementById('sort-feedback').style.color = "red";
+                }
+            }
+        };
+        container.appendChild(btn);
+    });
+}
+
+// JUEGO 2: RELACIONAR CONCEPTOS
+const matchPairs = [
+    {c: "Pertinencia Pedagógica", d: "Alineación directa con los propósitos del Currículo."},
+    {c: "Repositorio Educativo", d: "Espacio digital estructurado que aloja recursos abiertos."},
+    {c: "Curación de Contenidos", d: "Filtrar, seleccionar y adaptar lo mejor de internet."}
+];
+let selectedConcept = null;
+let selectedDef = null;
+
+function initMatchGame() {
+    const conDiv = document.getElementById('match-concepts');
+    const defDiv = document.getElementById('match-definitions');
+    conDiv.innerHTML = ''; defDiv.innerHTML = '';
+    document.getElementById('match-feedback').textContent = '';
+
+    matchPairs.forEach((pair, idx) => {
+        const cEl = document.createElement('div');
+        cEl.className = 'match-item concept';
+        cEl.textContent = pair.c;
+        cEl.dataset.idx = idx;
+        cEl.onclick = () => selectItem(cEl, 'concept');
+        conDiv.appendChild(cEl);
+    });
+
+    [...matchPairs].sort(() => Math.random() - 0.5).forEach((pair) => {
+        const dEl = document.createElement('div');
+        dEl.className = 'match-item definition';
+        dEl.textContent = pair.d;
+        // Encontrar índice original
+        const origIdx = matchPairs.findIndex(p => p.d === pair.d);
+        dEl.dataset.idx = origIdx;
+        dEl.onclick = () => selectItem(dEl, 'definition');
+        defDiv.appendChild(dEl);
+    });
+}
+
+function selectItem(el, type) {
+    if(el.classList.contains('correct')) return;
+    
+    if(type === 'concept') {
+        document.querySelectorAll('.match-item.concept').forEach(i => i.classList.remove('selected'));
+        selectedConcept = el;
+    } else {
+        document.querySelectorAll('.match-item.definition').forEach(i => i.classList.remove('selected'));
+        selectedDef = el;
+    }
+    el.classList.add('selected');
+
+    if(selectedConcept && selectedDef) {
+        if(selectedConcept.dataset.idx === selectedDef.dataset.idx) {
+            selectedConcept.classList.add('correct');
+            selectedDef.classList.add('correct');
+            selectedConcept.classList.remove('selected');
+            selectedDef.classList.remove('selected');
+            selectedConcept = null; selectedDef = null;
+            
+            if(document.querySelectorAll('.match-item.correct').length === matchPairs.length * 2) {
+                document.getElementById('match-feedback').textContent = "🎉 ¡Excelente! Relacionaste todos los criterios pedagógicos correctamente.";
+            }
+        } else {
+            setTimeout(() => {
+                selectedConcept.classList.remove('selected');
+                selectedDef.classList.remove('selected');
+                selectedConcept = null; selectedDef = null;
+            }, 500);
+        }
+    }
+}
+
+// JUEGO 3: MINI SOPA DE LETRAS
+// Matriz de letras simple de 8x8 que esconde horizontalmente 'CANVA', 'TIC'
+const gridLetters = [
+    ['C','A','N','V','A','X','Y','Z'],
+    ['Q','W','E','R','T','Y','U','I'],
+    ['T','I','C','O','P','A','S','D'],
+    ['F','G','H','J','K','L','Ñ','Z'],
+    ['G','E','N','I','A','L','L','Y'],
+    ['X','C','V','B','N','M','Q','W'],
+    ['A','S','D','F','G','H','J','K'],
+    ['Z','X','C','V','B','N','M','Q']
+];
+const targetWords = ["CANVA", "TIC", "GENIALLY"];
+let wordsFound = [];
+
+function initWordSearch() {
+    const grid = document.getElementById('wordsearch-grid');
+    grid.innerHTML = '';
+    wordsFound = [];
+    document.getElementById('wordsearch-feedback').textContent = '';
+
+    for(let r=0; r<8; r++) {
+        for(let c=0; c<8; c++) {
+            const cell = document.createElement('div');
+            cell.className = 'grid-cell';
+            cell.textContent = gridLetters[r][c];
+            cell.onclick = () => {
+                cell.classList.toggle('found');
+                checkWordSearchProgress();
+            };
+            grid.appendChild(cell);
+        }
+    }
+}
+
+function checkWordSearchProgress() {
+    // Simulación simplificada: al activar celdas, felicitamos el esfuerzo didáctico
+    document.getElementById('wordsearch-feedback').textContent = "🔍 Sigue buscando los términos clave de producción multimedia (Canva, Genially, TIC).";
+}
+
+// CUESTIONARIO COMPLETO (10 PREGUNTAS)
+const quizData = [
+    {q: "1. ¿Cuál es el objetivo principal del Marco de Competencia Digital Docente?", a: ["Controlar la asistencia digital.", "Guiar la formación y autoevaluación docente en la era digital.", "Sustituir las pizarras tradicionales."], c: 1},
+    {q: "2. El Currículo Nacional de la EBR incluye las TIC como:", a: ["Un curso opcional por las tardes.", "Una competencia transversal (Competencia 28).", "Un área obligatoria solo en secundaria."], c: 1},
+    {q: "3. ¿Qué criterio define la pertinencia pedagógica de un recurso web?", a: ["Que sea el más caro del mercado.", "Que se alinee directamente con los propósitos de aprendizaje previstos.", "Que tenga muchas animaciones distractoras."], c: 1},
+    {q: "4. Un repositorio educativo interactivo se caracteriza principalmente por:", a: ["Vender licencias de software.", "Alojar recursos digitales abiertos y reutilizables estructurados didácticamente.", "Ser un buscador genérico como Google."], c: 1},
+    {q: "5. En el diseño visual de una infografía educativa, ¿qué principio es crucial?", a: ["Saturar de texto todas las esquinas.", "Mantener un equilibrio visual y jerarquía clara mediante el uso de contrastes.", "No usar imágenes."], c: 1},
+    {q: "6. ¿Qué herramienta destaca por permitir la creación de presentaciones e imágenes altamente interactivas con capas de información?", a: ["Wordpad.", "Genially.", "Windows Movie Maker."], c: 1},
+    {q: "7. En el modelo TPACK, la intersección de los tres conocimientos fundamentales representa:", a: ["La desorganización del docente.", "La integración ideal donde la tecnología potencia la pedagogía del contenido.", "El desuso de la pedagogía clásica."], c: 1},
+    {q: "8. ¿Qué nivel del modelo SAMR implica que la tecnología permite crear nuevas actividades de aprendizaje, antes inconcebibles?", a: ["Sustitución.", "Aumento.", "Redefinición."], c: 2},
+    {q: "9. El propósito fundamental de la reflexión sobre la práctica docente digital es:", a: ["Identificar brechas pedagógicas personales para la mejora continua en el aula.", "Cumplir un trámite administrativo.", "Aumentar las horas de clase."], c: 0},
+    {q: "10. Al diseñar el producto final del curso, este debe estar integrado directamente en:", a: ["Un ensayo teórico de 50 páginas.", "Una sesión de aprendizaje innovadora contextualizada a la realidad escolar.", "Un correo electrónico de saludo."], c: 1}
+];
+
+function renderQuiz() {
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = '';
+    quizData.forEach((item, qIdx) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'quiz-item';
+        itemDiv.innerHTML = `<p><strong>${item.q}</strong></p><div class="quiz-options"></div>`;
+        const optionsDiv = itemDiv.querySelector('.quiz-options');
+        
+        item.a.forEach((opt, oIdx) => {
+            optionsDiv.innerHTML += `
+                <label>
+                    <input type="radio" name="q${qIdx}" value="${oIdx}"> ${opt}
+                </label>
+            `;
+        });
+        container.appendChild(itemDiv);
+    });
+}
+
+function gradeQuiz() {
+    let score = 0;
+    quizData.forEach((item, qIdx) => {
+        const selected = document.querySelector(`input[name="q${qIdx}"]:checked`);
+        if(selected && parseInt(selected.value) === item.c) {
+            score++;
+        }
+    });
+    
+    // Calificación sobre base 20 (Sistema peruano habitual)
+    const score20 = (score / quizData.length) * 20;
+    const resultBox = document.getElementById('quiz-result');
+    resultBox.style.display = 'block';
+    resultBox.innerHTML = `Nota Final: ${score20.toFixed(1)} / 20 puntos (${score} de 10 correctas).<br>
+    <span style="font-size:1rem; font-weight:normal;">Excelente esfuerzo colega de la I.E. Leoncio Prado. Siga innovando en sus aulas.</span>`;
+}
+
+// ASISTENTE DE IA CON CONVERSIÓN DE TEXTO A VOZ (AUDIO REAL)
+function askAI() {
+    const query = document.getElementById('ai-input').value.trim().toLowerCase();
+    const txtEl = document.getElementById('ai-text');
+    const box = document.getElementById('ai-response-box');
+    box.style.display = 'block';
+    
+    let reply = "Estimado docente leonciopradino, es una excelente pregunta. Para integrar eficazmente las TIC bajo los modelos TPACK y SAMR, recuerde siempre partir del propósito de aprendizaje de su sesión y luego elegir la herramienta (como Canva o Genially) que mejor enriquezca la experiencia del estudiante.";
+
+    if (query.includes('samr')) {
+        reply = "El modelo SAMR consta de cuatro niveles: Sustituir, Aumentar, Modificar y Redefinir. Para el nivel inicial o primaria, pasar de leer un cuento impreso a leerlo en una tablet interactiva es un nivel de Aumento; si crean su propio videocuento animado en Genially, ya estamos transformando el aprendizaje.";
+    } else if (query.includes('tpack')) {
+        reply = "El modelo TPACK nos enseña que una clase digital exitosa equilibra tres conocimientos clave: el contenido de su área, sus estrategias pedagógicas de enseñanza y el uso técnico de la herramienta tecnológica. Ninguno debe sobreponerse al otro.";
+    } else if (query.includes('desafío') || query.includes('desafio')) {
+        reply = "Los grandes desafíos en Santiago de Chuco incluyen la infraestructura tecnológica, pero la Competencia Digital Docente nos permite superarlo mediante la planificación de recursos interactivos offline que estimulen el pensamiento crítico.";
+    }
+
+    txtEl.textContent = reply;
+    document.getElementById('audio-status').textContent = "Audio listo para reproducir";
+}
+
+function playAIVoice() {
+    const text = document.getElementById('ai-text').textContent;
+    if (!text) return;
+    
+    // Web Speech API - Integrada nativamente en navegadores modernos para generar Audio
+    window.speechSynthesis.cancel(); // Detener audios previos
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'es-ES';
+    utterance.rate = 1.0;
+    
+    utterance.onstart = () => { document.getElementById('audio-status').textContent = "🔊 Hablando..."; };
+    utterance.onend = () => { document.getElementById('audio-status').textContent = "✓ Audio finalizado"; };
+    
+    window.speechSynthesis.speak(utterance);
+}
+
+// INICIALIZACIÓN GENERAL AL CARGAR
+window.onload = () => {
+    initSortGame();
+    initMatchGame();
+    initWordSearch();
+    renderQuiz();
+};

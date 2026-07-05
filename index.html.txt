@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVA - Competencia Digital Docente | I.E. 80621</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ENCABEZADO INSTITUCIONAL -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-placeholder">
+                <div class="icon-school">🏫</div>
+                <div>
+                    <h1>I.E. N.° 80621 "Leoncio Prado"</h1>
+                    <p>Santiago de Chuco | Aula Virtual de Innovación Pedagógica</p>
+                </div>
+            </div>
+            <div class="course-badge">Curso Virtual 2026</div>
+        </div>
+    </header>
+
+    <!-- BIENVENIDA Y PORTADA -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>Objeto Virtual de Aprendizaje (OVA)</h2>
+            <p class="hero-title">Fortalecimiento de la Competencia Digital Docente en la Educación Básica Regular</p>
+            <p class="hero-subtitle">Un espacio interactivo diseñado para los docentes de los niveles de Inicial, Primaria y Secundaria.</p>
+        </div>
+    </section>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="main-container">
+        
+        <!-- MENÚ DE NAVEGACIÓN -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('inicio')">Inicio y Resumen</button>
+            <button class="tab-btn" onclick="switchTab('materiales')">Repositorio Semanal</button>
+            <button class="tab-btn" onclick="switchTab('foro')">Foro de Debate</button>
+            <button class="tab-btn" onclick="switchTab('actividades')">Juegos Interactivos</button>
+            <button class="tab-btn" onclick="switchTab('evaluacion')">Cuestionario Final</button>
+            <button class="tab-btn" onclick="switchTab('asistente')">Asistente de IA (Voz)</button>
+        </nav>
+
+        <!-- SECCIÓN: INICIO -->
+        <section id="tab-inicio" class="tab-content active-content">
+            <div class="grid-2">
+                <div class="card">
+                    <h3>💡 Ideas Principales por Módulo</h3>
+                    <ul class="styled-list">
+                        <li><strong>Módulo 1:</strong> La competencia digital no es solo usar tecnología, es integrarla con propósito pedagógico bajo el marco curricular de la EBR (Competencia 28).</li>
+                        <li><strong>Módulo 2:</strong> Curar contenidos exige aplicar filtros de rigurosidad científica, pertinencia de edad y adaptabilidad didáctica.</li>
+                        <li><strong>Módulo 3:</strong> Plataformas como Canva y Genially transforman ideas estáticas en experiencias visuales altamente interactivas.</li>
+                        <li><strong>Módulo 4:</strong> Los modelos SAMR y TPACK nos ayudan a medir si estamos solo "sustituyendo" el papel o realmente "redefiniendo" el aprendizaje.</li>
+                        <li><strong>Módulo 5:</strong> La verdadera transformación digital ocurre cuando el docente reflexiona sobre su práctica y comparte su conocimiento con la comunidad escolar.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📌 Conclusiones Pedagógicas</h3>
+                    <blockquote class="custom-quote">
+                        "La tecnología en la I.E. Leoncio Prado de Santiago de Chuco es la herramienta; el propósito de aprendizaje y el pensamiento crítico de nuestros estudiantes de Inicial, Primaria y Secundaria siguen siendo el motor fundamental."
+                    </blockquote>
+                    <p>Al finalizar este recorrido autoguiado, estarás listo para formular y plasmar sesiones innovadoras que respondan a los retos del siglo XXI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: REPOSITORIO -->
+        <section id="tab-materiales" class="tab-content">
+            <h2>📦 Repositorio Escolar de Materiales</h2>
+            <p>Descarga las lecturas, plantillas y diapositivas correspondientes a cada semana de trabajo.</p>
+            
+            <div class="accordion">
+                <!-- Semana 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Semana 1: Contexto y Fundamentos de las TIC <span>▼</span></div>
+                    <div class="accordion-body">
+                        <div class="download-links">
+                            <a href="materiales/semana1_marco_cdd.pdf" download class="btn-download">📄 Marco de la Competencia Digital Docente (PDF)</a>
+                            <a href="materiales/semana1_tic_ebr.pptx" download class="btn-download">📊 Las TIC en el Currículo de EBR (PPTX)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Semana 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Semana 2: Curación de Contenidos y Búsqueda <span>▼</span></div>
+                    <div class="accordion-body">
+                        <div class="download-links">
+                            <a href="materiales/semana2_criterios_seleccion.pdf" download class="btn-download">📄 Guía de Criterios Pedagógicos (PDF)</a>
+                            <a href="materiales/semana2_repositorios.docx" download class="btn-download">📝 Directorio de Repositorios Interactivos (DOCX)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Semana 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Semana 3: Creación de Recursos Digitales <span>▼</span></div>
+                    <div class="accordion-body">
+                        <div class="download-links">
+                            <a href="materiales/semana3_manual_canva_genially.pdf" download class="btn-download">📄 Tutorial Expreso: Canva y Genially (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Semana 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Semana 4: Evaluación de Impacto y Modelos <span>▼</span></div>
+                    <div class="accordion-body">
+                        <div class="download-links">
+                            <a href="materiales/semana4_tpack_samr.pdf" download class="btn-download">📄 Compendio Modelos TPACK / SAMR (PDF)</a>
+                            <a href="materiales/semana4_plantilla_sesion.docx" download class="btn-download">📝 Formato de Sesión de Aprendizaje Innovadora (DOCX)</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Semana 5 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Semana 5: Planificación Didáctica y Entrega <span>▼</span></div>
+                    <div class="accordion-body">
+                        <div class="download-links">
+                            <a href="materiales/semana5_rubrica_evaluacion.pdf" download class="btn-download">📄 Rúbrica de Evaluación del Producto Final (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: FORO -->
+        <section id="tab-foro" class="tab-content">
+            <h2>💬 Foro de Socialización y Expectativas</h2>
+            <div class="forum-question-box">
+                <p><strong>Pregunta Detonante:</strong> ¿De qué manera el desarrollo de la Competencia Digital Docente contribuye a la integración efectiva de las TIC en el Currículo Nacional de la Educación Básica Regular (EBR) y cuáles son los principales desafíos para lograrlo en nuestras instituciones educativas?</p>
+            </div>
+            
+            <div class="forum-form">
+                <label for="forum-name">Nombre del Docente:</label>
+                <input type="text" id="forum-name" placeholder="Ej. Prof. María Rodríguez">
+                
+                <label for="forum-reply">Tu Aporte al Foro:</label>
+                <textarea id="forum-reply" rows="4" placeholder="Escribe aquí tus argumentos y expectativas..."></textarea>
+                
+                <button class="btn-action" onclick="postToForum()">Publicar Respuesta</button>
+            </div>
+
+            <div class="forum-comments" id="forum-comments-container">
+                <div class="comment">
+                    <div class="comment-author">Prof. Alejandro Cárdenas (Ejemplo)</div>
+                    <p>Considero que el principal desafío en nuestra provincia es la conectividad estable, sin embargo, dominar la competencia digital nos permite diseñar actividades offline que igualmente potencian el pensamiento crítico en secundaria.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: JUEGOS -->
+        <section id="tab-actividades" class="tab-content">
+            <h2>🎮 Zona de Juegos y Actividades Didácticas</h2>
+            <p>Selecciona una actividad para comprobar de manera práctica los conocimientos de cada módulo.</p>
+            
+            <div class="games-nav">
+                <button class="game-nav-btn active" onclick="switchGame('game1')">Mód 1: Ordenar Rangos</button>
+                <button class="game-nav-btn" onclick="switchGame('game2')">Mód 2: Emparejar Criterios</button>
+                <button class="game-nav-btn" onclick="switchGame('game3')">Mód 3: Mini Sopa de Letras</button>
+            </div>
+
+            <!-- JUEGO 1: ORDENAR -->
+            <div id="game-game1" class="game-container active-game">
+                <h3>Módulo 1: Orden de los Niveles del Marco de Competencia Digital Docente</h3>
+                <p>Haz clic en los botones en el orden correcto, desde el nivel más básico (**A1**) hasta el más avanzado (**C2**).</p>
+                <div id="sort-container" class="flex-wrap">
+                    <!-- Dinámico -->
+                </div>
+                <p id="sort-feedback" class="feedback-msg"></p>
+            </div>
+
+            <!-- JUEGO 2: EMPAREJAR -->
+            <div id="game-game2" class="game-container">
+                <h3>Módulo 2: Relacionar Concepto con Definición</h3>
+                <p>Selecciona un concepto azul y luego su definición gris correspondiente.</p>
+                <div class="grid-2">
+                    <div id="match-concepts" class="match-col"></div>
+                    <div id="match-definitions" class="match-col"></div>
+                </div>
+                <p id="match-feedback" class="feedback-msg"></p>
+            </div>
+
+            <!-- JUEGO 3: SOPA DE LETRAS -->
+            <div id="game-game3" class="game-container">
+                <h3>Módulo 3: Encuentra las Herramientas Digitales</h3>
+                <p>Encuentra y haz clic sobre las letras de las palabras clave: **CANVA**, **GENIALLY**, **TIC**.</p>
+                <div id="wordsearch-grid" class="wordsearch-grid"></div>
+                <p id="wordsearch-feedback" class="feedback-msg"></p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CUESTIONARIO -->
+        <section id="tab-evaluacion" class="tab-content">
+            <h2>📝 Cuestionario de Autoevaluación Integral</h2>
+            <p>Responde a las 10 preguntas analíticas planteadas para medir tu asimilación de los módulos.</p>
+            
+            <div id="quiz-container">
+                <!-- Se inyecta dinámicamente con JavaScript -->
+            </div>
+            
+            <button class="btn-action" style="margin-top: 20px;" onclick="gradeQuiz()">Enviar Respuestas y Calificar</button>
+            <div id="quiz-result" class="quiz-result-box" style="display:none;"></div>
+        </section>
+
+        <!-- SECCIÓN: ASISTENTE IA -->
+        <section id="tab-asistente" class="tab-content">
+            <h2>🤖 Agente de IA: Consultas Tecnopedagógicas</h2>
+            <p>Escribe cualquier duda que tengas sobre la planificación, herramientas o los modelos educativos (SAMR/TPACK). Nuestro tutor de IA te responderá por texto y simulará la lectura por audio.</p>
+            
+            <div class="ai-box">
+                <input type="text" id="ai-input" placeholder="Ej. ¿Cómo aplico el modelo SAMR en una sesión de nivel Inicial?">
+                <button class="btn-action" onclick="askAI()">Consultar al Asistente</button>
+            </div>
+            
+            <div id="ai-response-box" class="ai-response" style="display: none;">
+                <h4>Respuesta del Tutor Digital:</h4>
+                <p id="ai-text"></p>
+                <div class="audio-player-sim">
+                    <button class="btn-audio" onclick="playAIVoice()">🔊 Escuchar Respuesta por Voz</button>
+                    <span id="audio-status">Audio listo</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="main-footer">
+        <p>© 2026 Institución Educativa N.° 80621 "Leoncio Prado" - Santiago de Chuco. Desarrollado con Metodologías Activas.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

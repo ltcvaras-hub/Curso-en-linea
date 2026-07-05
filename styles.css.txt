@@ -1,0 +1,272 @@
+/* PALETA DE COLORES INSTITUCIONALES (TONOS AZULES) */
+:root {
+    --azul-oscuro: #0f2c59;
+    --azul-medio: #1a4d8c;
+    --azul-claro: #3490dc;
+    --azul-fondo: #e3f2fd;
+    --gris-claro: #f8f9fa;
+    --texto: #333333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+/* ENCABEZADO */
+.main-header {
+    background-color: var(--azul-oscuro);
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.logo-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.logo-placeholder h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+.logo-placeholder p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.icon-school {
+    font-size: 2.5rem;
+}
+.course-badge {
+    background-color: var(--azul-claro);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* PORTADA HERO */
+.hero-section {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 44, 89, 0.85);
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.hero-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* MENÚ NAVEGACIÓN */
+.main-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    background-color: var(--azul-medio);
+    padding: 8px;
+    border-radius: 8px;
+}
+.tab-btn {
+    flex: 1;
+    min-width: 140px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    padding: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+.tab-btn:hover, .tab-btn.active {
+    background-color: white;
+    color: var(--azul-oscuro);
+}
+
+/* SECCIONES */
+.tab-content {
+    display: none;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.active-content { display: block; }
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+.card {
+    background: var(--gris-claro);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid var(--azul-claro);
+}
+
+/* LISTAS Y CITAS */
+.styled-list { padding-left: 20px; }
+.styled-list li { margin-bottom: 12px; }
+.custom-quote {
+    font-style: italic;
+    background: var(--azul-fondo);
+    padding: 15px;
+    border-left: 4px solid var(--azul-medio);
+    margin: 15px 0;
+}
+
+/* ACORDEÓN REPOSITORIO */
+.accordion-item {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.accordion-header {
+    background-color: var(--gris-claro);
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+.accordion-body {
+    display: none;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+.download-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn-download {
+    color: var(--azul-medio);
+    text-decoration: none;
+    font-weight: 600;
+}
+.btn-download:hover { text-decoration: underline; }
+
+/* FORO */
+.forum-question-box {
+    background-color: var(--azul-fondo);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.forum-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.forum-form input, .forum-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.btn-action {
+    background-color: var(--azul-oscuro);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+}
+.btn-action:hover { background-color: var(--azul-medio); }
+.forum-comments {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+.comment {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.comment-author { font-weight: bold; color: var(--azul-medio); font-size: 0.9rem;}
+
+/* JUEGOS */
+.games-nav { display: flex; gap: 10px; margin-bottom: 20px; }
+.game-nav-btn {
+    padding: 8px 16px; background: #eee; border: none; cursor: pointer; border-radius: 4px;
+}
+.game-nav-btn.active { background: var(--azul-claro); color: white; }
+.game-container { display: none; background: #fafafa; padding: 20px; border-radius: 6px; }
+.game-container.active-game { display: block; }
+.flex-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-choice { padding: 10px 20px; background: white; border: 2px solid var(--azul-claro); cursor: pointer; border-radius: 4px; font-weight: bold; }
+.btn-choice.disabled { background: #ddd; border-color: #aaa; cursor: not-allowed; }
+.feedback-msg { font-weight: bold; margin-top: 15px; color: green; }
+
+/* RELACIONAR JUEGO */
+.match-col { display: flex; flex-direction: column; gap: 10px; }
+.match-item { padding: 12px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; text-align: center; font-weight: 500; border: 2px solid #ccc; }
+.match-item.concept { background: var(--azul-fondo); border-color: var(--azul-claro); }
+.match-item.definition { background: #f0f0f0; }
+.match-item.selected { border-color: orange; background: #fff3e0; }
+.match-item.correct { background: #c8e6c9 !important; border-color: green !important; cursor: not-allowed; }
+
+/* SOPA DE LETRAS */
+.wordsearch-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 40px);
+    gap: 5px;
+    margin: 20px 0;
+}
+.grid-cell {
+    width: 40px; height: 40px; line-height: 40px; text-align: center;
+    background: white; border: 1px solid #ccc; font-weight: bold; cursor: pointer; user-select: none;
+}
+.grid-cell.found { background: #c8e6c9; color: green; border-color: green; }
+
+/* CUESTIONARIO */
+.quiz-item { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+.quiz-options label { display: block; margin: 8px 0; cursor: pointer; }
+.quiz-result-box { margin-top: 20px; padding: 20px; border-radius: 6px; font-size: 1.2rem; font-weight: bold; text-align: center; background: var(--azul-fondo); }
+
+/* ASISTENTE IA */
+.ai-box { display: flex; gap: 10px; margin-bottom: 20px; }
+.ai-box input { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 6px; }
+.ai-response { background: #f0f4f8; padding: 20px; border-radius: 8px; border-left: 5px solid var(--azul-oscuro); }
+.audio-player-sim { display: flex; align-items: center; gap: 15px; margin-top: 15px; }
+.btn-audio { background: #4caf50; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+/* FOOTER */
+.main-footer { background: var(--azul-oscuro); color: white; text-align: center; padding: 15px; font-size: 0.85rem; margin-top: 50px; }
